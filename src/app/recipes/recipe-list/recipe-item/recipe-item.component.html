@@ -1,0 +1,20 @@
+<a
+  class="list-group-item card"
+  routerLinkActive="select"
+  [routerLink]="['detail', index]"
+    >
+  <div class="pull-left">
+    <h4 class="list-group-item-heading card-header">
+      {{ recipe.name }}
+      <img
+        [src]='recipe.imagePath'
+        class="card-img-bottom"
+        alt=""
+        [alt]='recipe.name'
+      >
+    </h4>
+    <p class="list-group-item-text card-body">
+      {{ recipe.description }}
+    </p>
+  </div>
+</a>

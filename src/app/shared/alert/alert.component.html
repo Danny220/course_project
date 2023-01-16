@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div class="backdrop" (click)="onClose()">
+
+  </div>
+  <div class="alert alert-danger alert-box">
+    <p>{{ message }}</p>
+    <div class="alert-box-actions">
+      <div class="btn btn-danger" (click)="onClose()">Chiudi</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<nav
+  class="navbar navbar-expand-md bg-body-tertiary">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand"
+      routerLink=""
+    >
+      Ricettario
+    </a>
+    <button
+      (click)="onClickToggle()"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"
+      id="navbarNav"
+      [ngClass]="{show: isOpened}">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a
+            class="nav-link"
+            routerLink="/recipes"
+            routerLinkActive="active"
+            >
+            Ricette
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a
+            class="nav-link"
+            routerLink="/shopping-list"
+            routerLinkActive="active"
+          >
+            Lista della Spesa
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/auth"
+          >
+            Account
+          </a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item" *ngIf="isAuthenticated">
+            <a
+              class="nav-link text-danger"
+              (click)="onLogout()"
+            >
+              Esci
+            </a>
+          </li>
+          <li class="dropdown" ngbDropdown *ngIf="isAuthenticated">
+            <a
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+              ngbDropdownToggle
+              (selectstart)="false"
+            >
+              Opzioni <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" ngbDropdownMenu>
+              <li>
+                <a
+                  class="dropdown-item"
+                  (click)="onSaveData()"
+                  ngbDropdownItem>
+                  Salva
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  (click)="onFetchData()"
+                  ngbDropdownItem
+                >
+                  Carica
+                </a>
+              </li>
+
+            </ul>
+          <li>
+            <div class="spinner-border text-primary" role="status" *ngIf="isFetching">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+  <!-- <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="onSelect('recipe')">Ricette</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="onSelect('shopping-list')"
+        >Lista della Spesa</a
+      >
+    </li>
+    <li class="nav-item">
+      <div class="dropdown" ngbDropdown>
+        <a
+          class="nav-link dropdown-toggle"
+          data-bs-toggle="dropdown"
+          ngbDropdownToggle
+        >
+        Opzioni <span class="caret"></span>
+      </a>
+        <ul class="dropdown-menu" ngbDropdownMenu>
+          <li>
+            <a class="dropdown-item" href="#" ngbDropdownItem>
+              Salva
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" ngbDropdownItem>
+              Carica
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+  <hr /> -->
+<!-- <div class="dropdown" ngbDropdown>
+  <a
+    class="nav-link dropdown-toggle"
+    data-bs-toggle="dropdown"
+    ngbDropdownToggle
+    (selectstart)="false"
+    style="cursor: pointer;"
+  >
+  Opzioni <span class="caret"></span>
+</a>
+  <ul class="dropdown-menu" ngbDropdownMenu>
+    <li>
+      <a class="dropdown-item" href="#" ngbDropdownItem>
+        Salva
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="#" ngbDropdownItem>
+        Carica
+      </a>
+    </li>
+  </ul>
+</div> -->

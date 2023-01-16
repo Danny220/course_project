@@ -1,0 +1,224 @@
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="recipeForm!" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="recipeForm!.invalid"
+          >
+            Salva
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger mx-1"
+            (click)="onCancel()">
+            Cancella
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+            >
+            <p
+              class="text-danger"
+              *ngIf="recipeForm.controls['name'].invalid &&
+                     recipeForm.controls['name'].touched"
+            >
+              Nome è obbligatorio
+            </p>
+            <p
+              class="text-danger"
+              *ngIf="!(recipeForm.controls['name'].invalid &&
+                     recipeForm.controls['name'].touched)"
+            >
+              &nbsp;
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="imagePath">Indirizzo Immagine</label>
+            <input
+              type="text"
+              id="imagePath"
+              class="form-control"
+              formControlName="imagePath"
+            >
+            <p
+              class="text-danger"
+              *ngIf="recipeForm.controls['imagePath'].invalid &&
+                     recipeForm.controls['imagePath'].touched"
+            >
+              Indirizzo immagine è obbligatorio
+            </p>
+            <p
+              class="text-danger"
+              *ngIf="!(recipeForm.controls['imagePath'].invalid &&
+                     recipeForm.controls['imagePath'].touched)"
+            >
+              &nbsp;
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <img [src]="recipeForm.controls['imagePath'].value" alt="" class="img-responsive">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="description">Descrizione</label>
+            <textarea
+              type="text"
+              id="description"
+              class="form-control mb-1"
+              rows="6"
+              formControlName="description"
+            ></textarea>
+            <p
+              class="text-danger"
+              *ngIf="recipeForm.controls['description'].invalid &&
+                     recipeForm.controls['description'].touched"
+            >
+              Descrizione è obbligatoria
+            </p>
+            <p
+              class="text-danger"
+              *ngIf="!(recipeForm.controls['description'].invalid &&
+                     recipeForm.controls['description'].touched)"
+            >
+              &nbsp;
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+<!--        <div class="col-12" formArrayName="ingredients">-->
+<!--            <div-->
+<!--              class="row mb-2"-->
+<!--              *ngFor="let ingredientCtrl of controls; let i = index;"-->
+<!--              [formGroupName]="i">-->
+<!--              <div class="col-8">-->
+<!--                <input-->
+<!--                  type="text"-->
+<!--                  class="form-control"-->
+<!--                  formControlName="name"-->
+<!--                  placeholder="Nome Ingrediente"-->
+<!--                >-->
+<!--              </div>-->
+<!--              <div class="col-2">-->
+<!--                <input-->
+<!--                  type="text"-->
+<!--                  class="form-control"-->
+<!--                  formControlName="amount"-->
+<!--                  placeholder="Quantità"-->
+<!--                >-->
+<!--              </div>-->
+<!--              <div class="col-2">-->
+<!--                <button-->
+<!--                  class="btn btn-danger"-->
+<!--                  type="button"-->
+<!--                  (click)="onDeleteIngredient(i)"-->
+<!--                >-->
+<!--                  X-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          <hr>-->
+<!--          <div class="row">-->
+<!--            <div class="col-12">-->
+<!--              <button-->
+<!--                class="btn btn-default"-->
+<!--                type="button"-->
+<!--                (click)="onAddIngredient();"-->
+<!--              >-->
+<!--                Aggiungi ingrediente-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </div>-->
+        <div class="col-12" formArrayName="ingredients">
+          <ng-container
+            *ngFor="let item of ingForm; let i = index"
+            [formGroupName]="i"
+          >
+            <p
+              class="text-secondary text-sm-center"
+              *ngIf="i == 0"
+            >
+              Ogni ingrediente deve avere un nome di almeno
+              3 caratteri.
+              <br>
+              La quantità deve essere maggiore di 0.
+            </p>
+            <div class="row mb-2">
+              <div class="col-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                  placeholder="Nome Ingrediente"
+                >
+              </div>
+              <div class="col-2">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="amount"
+                  placeholder="Quantità"
+                  controls="false"
+                >
+              </div>
+              <div class="col-2">
+                <button
+                  class="btn btn-danger"
+                  type="button"
+                  (click)="onDeleteIngredient(i)"
+                >
+                  X
+                </button>
+              </div>
+            </div>
+            <div class="row" *ngIf="ingForm.at(i).invalid && ingForm.at(i).touched">
+              <div class="col-12">
+                <p
+                  class="text-sm-center text-danger"
+                >
+                  L'ingrediente deve avere un nome di almeno
+                  3 caratteri e la quantità deve essere maggiore
+                  di 0.
+                </p>
+              </div>
+            </div>
+          </ng-container>
+          <hr>
+          <div class="row">
+            <div class="col-12">
+              <button
+                class="btn btn-default"
+                type="button"
+                (click)="onAddIngredient();"
+              >
+                Aggiungi ingrediente
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

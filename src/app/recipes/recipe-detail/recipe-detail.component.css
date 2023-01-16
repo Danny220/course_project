@@ -1,0 +1,11 @@
+img {
+  max-width: 100%;
+}
+ul.ig li:hover,
+ul.ig li:active {
+  background: rgba(173, 181, 180, .2);
+}
+
+li {
+  cursor: default;
+}

@@ -1,0 +1,11 @@
+a {
+    cursor: pointer;
+}
+.alert p {
+  display: inline;
+}
+
+.btn-close {
+  float: right;
+  display: inline;
+}

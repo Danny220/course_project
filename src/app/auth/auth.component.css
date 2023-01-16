@@ -1,0 +1,16 @@
+a {
+    color: #0D6EFD;
+}
+
+.loading-spinner {
+    text-align: center;
+}
+
+.alert p {
+    display: inline;
+}
+
+.btn-close {
+    float: right;
+    display: inline;
+}
